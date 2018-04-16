@@ -54,7 +54,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\AccountsPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -62,8 +66,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Models\Finance\Account.cs" />
+    <Compile Include="Models\Finance\Amount.cs" />
+    <Compile Include="Models\Finance\Interfaces\IAccount.cs" />
+    <Compile Include="Models\Finance\Interfaces\IAmount.cs" />
+    <Compile Include="Models\Finance\Interfaces\ICurrency.cs" />
+    <Compile Include="Models\Finance\Interfaces\IParticipant.cs" />
+    <Compile Include="Models\Finance\Interfaces\ITransaction.cs" />
+    <Compile Include="Models\Region\Interfaces\ICountry.cs" />
+    <Compile Include="Views\AccountsPageView.xaml.cs">
+      <DependentUpon>AccountsPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindowView.xaml.cs">
+      <DependentUpon>MainWindowView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -92,6 +107,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
