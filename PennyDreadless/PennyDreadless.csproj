@@ -58,6 +58,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\LoginPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -74,8 +78,13 @@
     <Compile Include="Models\Finance\Interfaces\IParticipant.cs" />
     <Compile Include="Models\Finance\Interfaces\ITransaction.cs" />
     <Compile Include="Models\Region\Interfaces\ICountry.cs" />
+    <Compile Include="View Models\LoginPageViewModel.cs" />
+    <Compile Include="View Models\MainWindowViewModel.cs" />
     <Compile Include="Views\AccountsPageView.xaml.cs">
       <DependentUpon>AccountsPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginPageView.xaml.cs">
+      <DependentUpon>LoginPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
@@ -109,7 +118,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View Models\" />
+    <ProjectReference Include="..\..\Walkways\Walkways\Walkways.csproj">
+      <Project>{714B9C5C-2231-4619-AA45-114BB251562D}</Project>
+      <Name>Walkways</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
