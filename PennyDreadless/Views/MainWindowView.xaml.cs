@@ -7,9 +7,9 @@ namespace PennyDreadless.Views
     /// </summary>
     public partial class MainWindowView : Window
     {
-        public MainWindowView()
+        public MainWindowView( )
         {
-            InitializeComponent();
+            InitializeComponent( );
         }
     }
 }

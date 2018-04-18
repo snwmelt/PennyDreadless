@@ -1,6 +1,6 @@
 ﻿using PennyDreadless.Views;
 using System.ComponentModel;
-using System.Windows;
+using System.Windows.Controls;
 using Walkways.MVVM.View_Model;
 
 namespace PennyDreadless.View_Models
@@ -9,18 +9,23 @@ namespace PennyDreadless.View_Models
     {
         #region Private Variables
 
-        private FrameworkElement _CurrentView;
-        private INPCInvoke       _INPCInvoke;
+        private Page       _CurrentView;
+        private INPCInvoke _INPCInvoke;
 
         #endregion
 
         public MainWindowViewModel( )
         {
             _INPCInvoke = new INPCInvoke( this );
+            SetInitialPage( );
+        }
+
+        private void SetInitialPage( )
+        {
             CurrentView = new LoginPageView( );
         }
 
-        public FrameworkElement CurrentView
+        public Page CurrentView
         {
             get
             {
@@ -29,7 +34,7 @@ namespace PennyDreadless.View_Models
 
             set
             {
-                _INPCInvoke.AssignPropertyValue<FrameworkElement>( ref PropertyChanged, ref _CurrentView, value );
+                _INPCInvoke.AssignPropertyValue<Page>( ref PropertyChanged, ref _CurrentView, value );
             }
         }
 

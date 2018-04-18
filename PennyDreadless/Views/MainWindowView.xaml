@@ -11,5 +11,5 @@
         <vms:MainWindowViewModel/>
     </Window.DataContext>
 
-    <Frame Content="{Binding Mode=OneWay, Path=CurrentView}"/>
+    <Frame Content="{Binding Path=CurrentView, Mode=OneTime}"/>
 </Window>
