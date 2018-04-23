@@ -2,8 +2,8 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:PennyDreadless.Views"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:Walkways="clr-namespace:Walkways.MVVM.View;assembly=Walkways"
       xmlns:vms="clr-namespace:PennyDreadless.View_Models"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -12,6 +12,12 @@
     <Page.DataContext>
         <vms:LoginPageViewModel/>
     </Page.DataContext>
+
+    <Page.Resources>
+        <Walkways:MultiValueBooleanToVisibilityConverter    x:Key="MultiValueBooleanToVisibilityConverter"/>
+        <Walkways:InverseBooleanConverter                   x:Key="InverseBooleanConverter"/>
+        <SolidColorBrush                                    x:Key="WatermarkSolidColorBrush"                Color="LightSteelBlue"/>
+    </Page.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
@@ -24,9 +30,32 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBox x:Name="UsernameTextBox" TextAlignment="Center" VerticalContentAlignment="Center" Height="30" Width="300" Grid.Row="1" Text="{Binding Path=Username, Mode=TwoWay}"/>
-        <TextBox x:Name="PasswordTextBox" TextAlignment="Center" VerticalContentAlignment="Center" Height="30" Width="300" Grid.Row="2" Text="{Binding Path=Password, Mode=TwoWay}"/>
+        <TextBox x:Name="UsernameTextBox" TextAlignment="Center" VerticalContentAlignment="Center" Height="30" Width="300" Grid.Row="1" FontSize="15" Text="{Binding Path=Username, Mode=TwoWay}"/>
+        <TextBox x:Name="PasswordTextBox" TextAlignment="Center" VerticalContentAlignment="Center" Height="30" Width="300" Grid.Row="2" FontSize="15" Text="{Binding Path=Password, Mode=TwoWay}"/>
 
+        <TextBlock x:Name="UsernameTextBlock"  VerticalAlignment="Center" HorizontalAlignment="Center" Text="Username" Grid.Row="1"
+                   Foreground="{StaticResource WatermarkSolidColorBrush}"
+                   FontSize="{Binding ElementName=UsernameTextBox, Path=FontSize}">
+            <TextBlock.Visibility>
+                <MultiBinding Converter="{StaticResource MultiValueBooleanToVisibilityConverter}">
+                    <Binding ElementName="UsernameTextBox" Path="Text.IsEmpty"/>
+                    <Binding ElementName="UsernameTextBox" Path="IsFocused" Converter="{StaticResource InverseBooleanConverter}"/>
+                </MultiBinding>
+            </TextBlock.Visibility>
+        </TextBlock>
+
+        <TextBlock x:Name="PasswordTextBlock"  VerticalAlignment="Center" HorizontalAlignment="Center" Text="Password" Grid.Row="2"
+                   Foreground="{StaticResource WatermarkSolidColorBrush}"
+                   FontSize="{Binding ElementName=UsernameTextBox, Path=FontSize}">
+            <TextBlock.Visibility>
+                <MultiBinding Converter="{StaticResource MultiValueBooleanToVisibilityConverter}">
+                    <Binding ElementName="PasswordTextBox" Path="Text.IsEmpty"/>
+                    <Binding ElementName="PasswordTextBox" Path="IsFocused" Converter="{StaticResource InverseBooleanConverter}"/>
+                </MultiBinding>
+            </TextBlock.Visibility>
+        </TextBlock>
+
+        
         <Button x:Name="LoginUserButton"  Height="35" Width="200" Grid.Row="4" Content="Login"  FontSize="20" Command="{Binding Path=ValidateUserCommand}"/>
         <Button x:Name="CreateUserButton" Height="35" Width="200" Grid.Row="5" Content="Create" FontSize="20" Command="{Binding Path=CreateUserCommand}"/>
     </Grid>

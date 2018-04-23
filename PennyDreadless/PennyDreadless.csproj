@@ -54,6 +54,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Core\Enums\UIContentEnum.cs" />
+    <Compile Include="Models\Core\NavigationHandler.cs" />
     <Page Include="Views\AccountsPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -78,11 +80,13 @@
     <Compile Include="Models\Finance\Interfaces\IParticipant.cs" />
     <Compile Include="Models\Finance\Interfaces\ITransaction.cs" />
     <Compile Include="Models\Region\Interfaces\ICountry.cs" />
+    <Compile Include="View Models\AccountsPageViewModel.cs" />
     <Compile Include="View Models\LoginPageViewModel.cs" />
     <Compile Include="View Models\MainWindowViewModel.cs" />
     <Compile Include="Views\AccountsPageView.xaml.cs">
       <DependentUpon>AccountsPageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Interfaces\INavigationServiceProvider.cs" />
     <Compile Include="Views\LoginPageView.xaml.cs">
       <DependentUpon>LoginPageView.xaml</DependentUpon>
     </Compile>
@@ -123,5 +127,6 @@
       <Name>Walkways</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

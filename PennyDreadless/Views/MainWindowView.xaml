@@ -6,10 +6,19 @@
         xmlns:vms="clr-namespace:PennyDreadless.View_Models"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    
+
     <Window.DataContext>
         <vms:MainWindowViewModel/>
     </Window.DataContext>
 
-    <Frame Content="{Binding Path=CurrentView, Mode=OneTime}"/>
+
+    <Frame x:Name="MainWindowContentFrame" Content="{Binding Path=CurrentView, Mode=OneTime}" NavigationUIVisibility="Hidden">
+        <Frame.Template>
+            <ControlTemplate TargetType="Frame">
+                <DockPanel Margin="2">
+                    <ContentPresenter />
+                </DockPanel>
+            </ControlTemplate>
+        </Frame.Template>
+    </Frame>
 </Window>

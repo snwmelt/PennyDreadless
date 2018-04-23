@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PennyDreadless.Core;
+using PennyDreadless.Models.Core.Enums;
+using System;
 using System.ComponentModel;
 using Walkways.MVVM.View_Model;
 
@@ -10,28 +12,27 @@ namespace PennyDreadless.View_Models
 
         private String      _Password;
         private String      _Username;
-        private INPCInvoke  _INPCInvoke;
+        private INPCInvoker  _INPCInvoke;
 
         #endregion
 
-        public LoginPageViewModel ( )
+        public LoginPageViewModel( )
         {
-            _INPCInvoke         = new INPCInvoke( this );
+            _INPCInvoke         = new INPCInvoker( this );
             CreateUserCommand   = new CommandRelay<Object>( CreateUser, InputIsValid );
             ValidateUserCommand = new CommandRelay<Object>( ValidateUser, InputIsValid );
-
-            Password = "Password";
-            Username = "Username";
         }
 
         private bool InputIsValid( Object obj )
         {
-            return !( obj is null ); // Need to write proper validation
+            return PasswordIsValid() &&
+                   UsernameIsValid();
         }
-
+        
         public void CreateUser( Object obj )
         {
             // Implement Database Create User?
+            NavigationHandler.NavigateTo( UIContent.AccountsPage );
         }
 
         public CommandRelay<Object> CreateUserCommand
@@ -53,6 +54,11 @@ namespace PennyDreadless.View_Models
             }
         }
 
+        private bool PasswordIsValid( )
+        {
+            return !String.IsNullOrEmpty( Password );
+        }
+
         public String Username
         {
             private get
@@ -66,9 +72,14 @@ namespace PennyDreadless.View_Models
             }
         }
 
+        private bool UsernameIsValid( )
+        {
+            return !String.IsNullOrEmpty( Username );
+        }
+
         public void ValidateUser( Object obj )
         {
-            // Implement Database Validate User?
+            NavigationHandler.NavigateTo( UIContent.AccountsPage );
         }
 
         public CommandRelay<object> ValidateUserCommand

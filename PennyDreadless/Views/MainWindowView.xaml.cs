@@ -1,15 +1,25 @@
-﻿using System.Windows;
+﻿using PennyDreadless.Views.Interfaces;
+using System.Windows;
+using System.Windows.Navigation;
 
 namespace PennyDreadless.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindowView : Window
+    public partial class MainWindowView : Window, INavigationServiceProvider
     {
-        public MainWindowView( )
+        public MainWindowView()
         {
-            InitializeComponent( );
+            InitializeComponent();
+        }
+
+        public NavigationService NavigationService
+        {
+            get
+            {
+                return MainWindowContentFrame.NavigationService;
+            }
         }
     }
 }

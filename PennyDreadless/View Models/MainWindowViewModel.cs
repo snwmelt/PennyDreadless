@@ -9,19 +9,14 @@ namespace PennyDreadless.View_Models
     {
         #region Private Variables
 
-        private Page       _CurrentView;
-        private INPCInvoke _INPCInvoke;
+        private Page        _CurrentView;
+        private INPCInvoker _INPCInvoke;
 
         #endregion
 
         public MainWindowViewModel( )
         {
-            _INPCInvoke = new INPCInvoke( this );
-            SetInitialPage( );
-        }
-
-        private void SetInitialPage( )
-        {
+            _INPCInvoke = new INPCInvoker( this );
             CurrentView = new LoginPageView( );
         }
 
