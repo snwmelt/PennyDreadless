@@ -1,70 +1,61 @@
 ﻿using PennyDreadless.Models.Core.Enums;
-using PennyDreadless.Views.Interfaces;
+using PennyDreadless.Models.Core.Interfaces;
 using System;
-using System.Windows;
 using System.Windows.Navigation;
 
-namespace PennyDreadless.Core
+namespace PennyDreadless.Models.Core
 {
-    internal static class NavigationHandler
+    internal class NavigationHandler : INavigationHandler
     {
-        #region Private Variables
-
-        private static NavigationService _NavigationService = null;
-
-        #endregion
-
-        public static void AttatchNavigationService ( NavigationService NavigationService )
+        public NavigationHandler ( NavigationService NavigationService )
         {
-            _NavigationService = NavigationService;
+            this.NavigationService = NavigationService;
         }
 
-        public static NavigationService NavigationService
+        public NavigationService NavigationService
+        {
+            get;
+        }
+
+        public bool NavigationServiceAvailable
         {
             get
             {
-                if ( NavigationServiceAttached )
-                {
-                    AttatchNavigationService( ( ( INavigationServiceProvider )App.Current.MainWindow )?.NavigationService );
-                }
-
-                return _NavigationService;
-            }
-
-            private set
-            {
-                _NavigationService = NavigationService;
+                return !( NavigationService is null );
             }
         }
 
-        public static bool NavigationServiceAttached
+        public bool NavigateBackward( )
         {
-            get
+            if ( NavigationService.CanGoBack )
             {
-                return ( _NavigationService is null );
+                NavigationService.GoBack( );
+
+                return true;
             }
+
+            return false;
         }
 
-        public static void NavigateTo ( UIContent UIContent )
+        public bool NavigateForward( )
         {
-            switch ( UIContent )
+            if ( NavigationService.CanGoForward )
             {
-                case UIContent.AccountsPage:
-                    NavigationService.Navigate( new Uri( "pack://application:,,,/Views/AccountsPageView.xaml" ) );
-                    break;
+                NavigationService.GoForward( );
 
-                case UIContent.LoginPage:
-                    NavigationService.Navigate( new Uri( "pack://application:,,,/Views/LoginPageView.xaml" ) );
-                    break;
+                return true;
+            }
 
+            return false;
+        }
+
+        public bool NavigateTo( UIContent Content )
+        {
+            switch ( Content )
+            {
                 default:
-                    break;
+                    return NavigationService.Navigate( new Uri( "pack://application:,,,/Views/" + Content.ToString( ) + "View.xaml" ) );
             }
-        }
-
-        public static void NavigateTo ( FrameworkElement FrameWorkElement )
-        {
-            NavigationService.Navigate( FrameWorkElement );
         }
     }
 }

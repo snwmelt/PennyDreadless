@@ -1,4 +1,4 @@
-﻿using PennyDreadless.Core;
+﻿using PennyDreadless.Models.Core;
 using PennyDreadless.Models.Core.Enums;
 using System;
 using System.ComponentModel;
@@ -32,7 +32,7 @@ namespace PennyDreadless.View_Models
         public void CreateUser( Object obj )
         {
             // Implement Database Create User?
-            NavigationHandler.NavigateTo( UIContent.AccountsPage );
+            Core.NavigationHandler.NavigateTo( UIContent.AccountsPage );
         }
 
         public CommandRelay<Object> CreateUserCommand
@@ -79,7 +79,7 @@ namespace PennyDreadless.View_Models
 
         public void ValidateUser( Object obj )
         {
-            NavigationHandler.NavigateTo( UIContent.AccountsPage );
+            Core.NavigationHandler.NavigateTo( UIContent.AccountsPage );
         }
 
         public CommandRelay<object> ValidateUserCommand

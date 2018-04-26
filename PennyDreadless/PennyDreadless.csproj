@@ -55,7 +55,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Core\AuthenticationManager.cs" />
+    <Compile Include="Models\Core\Core.cs" />
     <Compile Include="Models\Core\Enums\UIContentEnum.cs" />
+    <Compile Include="Models\Core\Interfaces\INavigationHandler.cs" />
     <Compile Include="Models\Core\NavigationHandler.cs" />
     <Page Include="Views\AccountsPageView.xaml">
       <SubType>Designer</SubType>
