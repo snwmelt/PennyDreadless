@@ -25,14 +25,16 @@ namespace PennyDreadless.View_Models
 
         private bool InputIsValid( Object obj )
         {
-            return PasswordIsValid() &&
-                   UsernameIsValid();
+            return Core.UserAuthenticator.IsValidPassword( Password ) &&
+                   Core.UserAuthenticator.IsValidUsername( Username );
         }
         
         public void CreateUser( Object obj )
         {
-            // Implement Database Create User?
-            Core.NavigationHandler.NavigateTo( UIContent.AccountsPage );
+            if ( Core.UserAuthenticator.Create( Username, Password ) )
+            {
+                ValidateUser( obj );
+            }
         }
 
         public CommandRelay<Object> CreateUserCommand
@@ -40,7 +42,6 @@ namespace PennyDreadless.View_Models
             get;
         }
         
-
         public String Password
         {
             private get
@@ -54,10 +55,7 @@ namespace PennyDreadless.View_Models
             }
         }
 
-        private bool PasswordIsValid( )
-        {
-            return !String.IsNullOrEmpty( Password );
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public String Username
         {
@@ -71,22 +69,18 @@ namespace PennyDreadless.View_Models
                 _INPCInvoke.AssignPropertyValue<String>( ref PropertyChanged, ref _Username, value );
             }
         }
-
-        private bool UsernameIsValid( )
-        {
-            return !String.IsNullOrEmpty( Username );
-        }
-
+        
         public void ValidateUser( Object obj )
         {
-            Core.NavigationHandler.NavigateTo( UIContent.AccountsPage );
+            if ( Core.UserAuthenticator.Authenticate( Username, Password ) )
+            {
+                Core.NavigationHandler.NavigateTo( UIContent.AccountsPage );
+            }
         }
 
         public CommandRelay<object> ValidateUserCommand
         {
             get;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -49,12 +49,12 @@ namespace PennyDreadless.Models.Core
             return false;
         }
 
-        public bool NavigateTo( UIContent Content )
+        public bool NavigateTo( UIContent UI)
         {
-            switch ( Content )
+            switch ( UI )
             {
                 default:
-                    return NavigationService.Navigate( new Uri( "pack://application:,,,/Views/" + Content.ToString( ) + "View.xaml" ) );
+                    return NavigationService.Navigate( new Uri( "pack://application:,,,/Views/" + UI.ToString( ) + "View.xaml" ) );
             }
         }
     }

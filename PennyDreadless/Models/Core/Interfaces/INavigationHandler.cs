@@ -36,6 +36,6 @@ namespace PennyDreadless.Models.Core.Interfaces
         /// </summary>
         /// <param name="Object"></param>
         /// <returns></returns>
-        Boolean NavigateTo ( UIContent Object );
+        Boolean NavigateTo ( UIContent UI );
     }
 }
