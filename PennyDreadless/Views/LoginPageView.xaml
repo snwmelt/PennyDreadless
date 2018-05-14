@@ -16,10 +16,10 @@
     <Page.Resources>
         <Walkways:MultiValueBooleanToVisibilityConverter    x:Key="MultiValueBooleanToVisibilityConverter"/>
         <Walkways:InverseBooleanConverter                   x:Key="InverseBooleanConverter"/>
-        <SolidColorBrush                                    x:Key="WatermarkSolidColorBrush"                Color="Gray"/>
+        <SolidColorBrush                                    x:Key="WatermarkSolidColorBrush"                Color="LightSteelBlue"/>
     </Page.Resources>
     
-    <Grid Width="350" Height="400">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="50"/>
@@ -30,16 +30,12 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBox x:Name="UsernameTextBox" TextAlignment="Center" VerticalContentAlignment="Center" Height="30" 
-                 Width="250" Grid.Row="1" FontSize="14" BorderThickness="0,0,0,1" SnapsToDevicePixels="True" 
-                 Text="{Binding Path=Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox x:Name="PasswordTextBox" TextAlignment="Center" VerticalContentAlignment="Center" Height="30" 
-                 Width="250" Grid.Row="2" FontSize="14" BorderThickness="0,0,0,1" SnapsToDevicePixels="True" 
-                 Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="UsernameTextBox" TextAlignment="Center" VerticalContentAlignment="Center" Height="30" Width="300" Grid.Row="1" FontSize="15" Text="{Binding Path=Username, Mode=TwoWay}"/>
+        <TextBox x:Name="PasswordTextBox" TextAlignment="Center" VerticalContentAlignment="Center" Height="30" Width="300" Grid.Row="2" FontSize="15" Text="{Binding Path=Password, Mode=TwoWay}"/>
 
-        <TextBlock x:Name="UsernameTextBlock"  VerticalAlignment="Center" HorizontalAlignment="Center" 
-                   Text="Username" Grid.Row="1" Foreground="{StaticResource WatermarkSolidColorBrush}" 
-                   FontSize="{Binding ElementName=UsernameTextBox, Path=FontSize}" IsHitTestVisible="False">
+        <TextBlock x:Name="UsernameTextBlock"  VerticalAlignment="Center" HorizontalAlignment="Center" Text="Username" Grid.Row="1"
+                   Foreground="{StaticResource WatermarkSolidColorBrush}"
+                   FontSize="{Binding ElementName=UsernameTextBox, Path=FontSize}">
             <TextBlock.Visibility>
                 <MultiBinding Converter="{StaticResource MultiValueBooleanToVisibilityConverter}">
                     <Binding ElementName="UsernameTextBox" Path="Text.IsEmpty"/>
@@ -48,9 +44,9 @@
             </TextBlock.Visibility>
         </TextBlock>
 
-        <TextBlock x:Name="PasswordTextBlock"  VerticalAlignment="Center" HorizontalAlignment="Center" 
-                   Text="Password" Grid.Row="2" Foreground="{StaticResource WatermarkSolidColorBrush}" 
-                   FontSize="{Binding ElementName=UsernameTextBox, Path=FontSize}" IsHitTestVisible="False">
+        <TextBlock x:Name="PasswordTextBlock"  VerticalAlignment="Center" HorizontalAlignment="Center" Text="Password" Grid.Row="2"
+                   Foreground="{StaticResource WatermarkSolidColorBrush}"
+                   FontSize="{Binding ElementName=UsernameTextBox, Path=FontSize}">
             <TextBlock.Visibility>
                 <MultiBinding Converter="{StaticResource MultiValueBooleanToVisibilityConverter}">
                     <Binding ElementName="PasswordTextBox" Path="Text.IsEmpty"/>
@@ -59,10 +55,8 @@
             </TextBlock.Visibility>
         </TextBlock>
 
-
-        <Button x:Name="LoginUserButton"  Height="28" Width="114" Grid.Row="4" Content="Login"  FontSize="14" 
-                SnapsToDevicePixels="True" BorderThickness="1" BorderBrush="LightGray" Command="{Binding Path=ValidateUserCommand}"/>
-        <Button x:Name="CreateUserButton" Height="28" Width="114" Grid.Row="5" Content="Create" FontSize="14" 
-                SnapsToDevicePixels="True" BorderThickness="1" BorderBrush="LightGray" Command="{Binding Path=CreateUserCommand}"/>
+        
+        <Button x:Name="LoginUserButton"  Height="35" Width="200" Grid.Row="4" Content="Login"  FontSize="20" Command="{Binding Path=ValidateUserCommand}"/>
+        <Button x:Name="CreateUserButton" Height="35" Width="200" Grid.Row="5" Content="Create" FontSize="20" Command="{Binding Path=CreateUserCommand}"/>
     </Grid>
 </Page>

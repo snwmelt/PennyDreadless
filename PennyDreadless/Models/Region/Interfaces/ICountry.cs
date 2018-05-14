@@ -1,6 +1,6 @@
 ﻿namespace PennyDreadless.Models.Region.Interfaces
 {
-    public interface ICountry
+    internal interface ICountry
     {
     }
 }

@@ -3,12 +3,18 @@ using System.Collections.Generic;
 
 namespace PennyDreadless.Models.Finance.Interfaces
 {
-    public interface IAccount : ICollection<ITransaction>
+    interface IAccount
     {
-        UInt16 AccountNumber { get; }
-        
-        IParticipant Holder { set; get; }
-        
+        uint AccountNumber { get; }
+
+        Boolean AddTransaction( ITransaction Transaction );
+
+        IParticipant Holder { get; }
+
+        Boolean RemoveTransaction ( ITransaction Transaction );
+
         uint SortCode { get; }
+
+        IEnumerable<ITransaction> Transactions { get; }
     }
 }

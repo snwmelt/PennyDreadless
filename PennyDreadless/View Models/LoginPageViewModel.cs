@@ -10,34 +10,23 @@ namespace PennyDreadless.View_Models
     {
         #region Private Variables
 
-        private String      _Mask;
-        private Char        _MaskChar;
         private String      _Password;
         private String      _Username;
-        private INPCInvoker _INPCInvoke;
+        private INPCInvoker  _INPCInvoke;
 
         #endregion
 
         public LoginPageViewModel( )
         {
-            CreateUserCommand   = new CommandRelay<Object>( CreateUser, CanCreateUser );
             _INPCInvoke         = new INPCInvoker( this );
-            _Mask               = "";
-            _MaskChar           = '*';
-            ValidateUserCommand = new CommandRelay<Object>( ValidateUser, CanValidateUser );
+            CreateUserCommand   = new CommandRelay<Object>( CreateUser, InputIsValid );
+            ValidateUserCommand = new CommandRelay<Object>( ValidateUser, InputIsValid );
         }
 
-        private bool CanCreateUser( Object obj )
+        private bool InputIsValid( Object obj )
         {
-            return Core.UserAuthenticator.IsAValidPassword( Password ) &&
-                   Core.UserAuthenticator.IsAValidUsername( Username ) &&
-                   !Core.UserAuthenticator.UserExists( Username );
-        }
-
-        private bool CanValidateUser( Object obj )
-        {
-            return Core.UserAuthenticator.IsAValidPassword( Password ) &&
-                   Core.UserAuthenticator.UserExists( Username );
+            return Core.UserAuthenticator.IsValidPassword( Password ) &&
+                   Core.UserAuthenticator.IsValidUsername( Username );
         }
         
         public void CreateUser( Object obj )
@@ -57,14 +46,12 @@ namespace PennyDreadless.View_Models
         {
             private get
             {
-                return _Mask;
+                return _Password;
             }
 
             set
             {
-                _Password = value.GetSHA256Hash();
-
-                _INPCInvoke.AssignPropertyValue<String>( ref PropertyChanged, ref _Mask, ( value.Length > _Mask.Length ? _Mask + _MaskChar : _Mask.Substring( 0, value.Length ) ) );
+                _INPCInvoke.AssignPropertyValue<String>( ref PropertyChanged, ref _Password, value );
             }
         }
 
@@ -85,9 +72,7 @@ namespace PennyDreadless.View_Models
         
         public void ValidateUser( Object obj )
         {
-            Core.UserAuthenticator.Authenticate( Username, Password );
-
-            if ( Core.UserAuthenticator.HasAuthenticatedUser )
+            if ( Core.UserAuthenticator.Authenticate( Username, Password ) )
             {
                 Core.NavigationHandler.NavigateTo( UIContent.AccountsPage );
             }

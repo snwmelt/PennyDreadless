@@ -2,10 +2,12 @@
 
 namespace PennyDreadless.Models.Finance.Interfaces
 {
-    public interface IParticipant
+    internal interface IParticipant
     {
         String Title { get; }
 
-        Boolean HasAccounts { get; }
+        Boolean HasAccount { get; }
+
+        IAccount Account { get; }
     }
 }

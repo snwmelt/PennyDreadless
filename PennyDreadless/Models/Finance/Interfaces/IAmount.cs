@@ -2,7 +2,7 @@
 
 namespace PennyDreadless.Models.Finance.Interfaces
 {
-    public interface IAmount
+    internal interface IAmount
     {
         ICurrency Currency { get; }
 

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PennyDreadless", "PennyDrea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Walkways", "..\Walkways\Walkways\Walkways.csproj", "{714B9C5C-2231-4619-AA45-114BB251562D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialPersistanceLibrary", "..\SerialPersistanceLibrary\src\SerialPersistanceLibrary.csproj", "{84530FB1-AED3-43F1-A4FD-4B1B2E42B4D7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{714B9C5C-2231-4619-AA45-114BB251562D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{714B9C5C-2231-4619-AA45-114BB251562D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{714B9C5C-2231-4619-AA45-114BB251562D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84530FB1-AED3-43F1-A4FD-4B1B2E42B4D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84530FB1-AED3-43F1-A4FD-4B1B2E42B4D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84530FB1-AED3-43F1-A4FD-4B1B2E42B4D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84530FB1-AED3-43F1-A4FD-4B1B2E42B4D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
