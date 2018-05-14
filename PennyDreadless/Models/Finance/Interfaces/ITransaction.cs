@@ -2,7 +2,7 @@
 
 namespace PennyDreadless.Models.Finance.Interfaces
 {
-    internal interface ITransaction
+    public interface ITransaction
     {
         IAmount Amount { get; }
 

@@ -7,13 +7,12 @@ namespace PennyDreadless.Models.Core
     /// <summary>
     /// Contains required static references for application function.
     /// </summary>
-    internal sealed class Core
+    internal sealed class Core : IDisposable
     {
         #region Private Variables
 
         private static readonly Core _Instance = new Core( );
-
-        private IDataContext             _IDataContext;
+        private IUserDataSerializer      _IUserDataSerializer;
         private IUserAuthenticator       _IUserAuthenticator;
         private Lazy<INavigationHandler> _LazyINavigationHandler;
 
@@ -21,9 +20,14 @@ namespace PennyDreadless.Models.Core
 
         private Core( )
         {
-            _IDataContext           = new DataContext( );
+            _IUserDataSerializer    = new DataContext( );
             _IUserAuthenticator     = new AuthenticationManager( );
             _LazyINavigationHandler = new Lazy<INavigationHandler>( ( ) => new NavigationHandler( ( ( INavigationServiceProvider )App.Current.MainWindow ).NavigationService ) );
+        }
+
+        public void Dispose( )
+        {
+            throw new NotImplementedException( );
         }
 
         public static IUserAuthenticator UserAuthenticator
@@ -41,12 +45,12 @@ namespace PennyDreadless.Models.Core
                 return _Instance._LazyINavigationHandler.Value;
             }
         }
-
-        public static IDataContext DataContext
+        
+        public static IUserDataSerializer UserDataSerializer
         {
             get
             {
-                return _Instance._IDataContext;
+                return _Instance._IUserDataSerializer;
             }
         }
     }

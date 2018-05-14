@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vms="clr-namespace:PennyDreadless.View_Models"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        SizeToContent="WidthAndHeight">
 
     <Window.DataContext>
         <vms:MainWindowViewModel/>
     </Window.DataContext>
-
 
     <Frame x:Name="MainWindowContentFrame" Content="{Binding Path=CurrentView, Mode=OneTime}" NavigationUIVisibility="Hidden">
         <Frame.Template>
