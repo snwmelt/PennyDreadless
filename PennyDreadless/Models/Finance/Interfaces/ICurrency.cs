@@ -3,7 +3,7 @@ using System;
 
 namespace PennyDreadless.Models.Finance.Interfaces
 {
-    internal interface ICurrency
+    public interface ICurrency
     {
         String Abbreviation { get; }
 

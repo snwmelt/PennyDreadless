@@ -57,11 +57,14 @@
     <Compile Include="Models\Core\AuthenticationManager.cs" />
     <Compile Include="Models\Core\Core.cs" />
     <Compile Include="Models\Core\DataContext.cs" />
+    <Compile Include="Models\Core\Enums\DataRequestResultEnum.cs" />
     <Compile Include="Models\Core\Enums\UIContentEnum.cs" />
-    <Compile Include="Models\Core\Interfaces\IDataContext.cs" />
+    <Compile Include="Models\Core\Interfaces\IUserDataSerializer.cs" />
+    <Compile Include="Models\Core\DataRequestEventArgs.cs" />
+    <Compile Include="Models\Core\Extensions\StringExtensions.cs" />
     <Compile Include="Models\Core\Interfaces\INavigationHandler.cs" />
-    <Compile Include="Models\Core\Interfaces\IUser.cs" />
     <Compile Include="Models\Core\Interfaces\IUserAuthenticator.cs" />
+    <Compile Include="Models\Core\InvalidKeyException.cs" />
     <Compile Include="Models\Core\NavigationHandler.cs" />
     <Page Include="Views\AccountsPageView.xaml">
       <SubType>Designer</SubType>
@@ -79,13 +82,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\Core\User.cs" />
+    <Compile Include="Models\Finance\Account.cs" />
     <Compile Include="Models\Finance\Amount.cs" />
     <Compile Include="Models\Finance\Interfaces\IAccount.cs" />
     <Compile Include="Models\Finance\Interfaces\IAmount.cs" />
     <Compile Include="Models\Finance\Interfaces\ICurrency.cs" />
     <Compile Include="Models\Finance\Interfaces\IParticipant.cs" />
     <Compile Include="Models\Finance\Interfaces\ITransaction.cs" />
+    <Compile Include="Models\Finance\Transaction.cs" />
     <Compile Include="Models\Region\Interfaces\ICountry.cs" />
     <Compile Include="View Models\AccountsPageViewModel.cs" />
     <Compile Include="View Models\LoginPageViewModel.cs" />
@@ -129,6 +133,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SerialPersistanceLibrary\src\SerialPersistanceLibrary.csproj">
+      <Project>{84530FB1-AED3-43F1-A4FD-4B1B2E42B4D7}</Project>
+      <Name>SerialPersistanceLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Walkways\Walkways\Walkways.csproj">
       <Project>{714B9C5C-2231-4619-AA45-114BB251562D}</Project>
       <Name>Walkways</Name>
