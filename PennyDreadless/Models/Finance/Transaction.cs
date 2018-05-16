@@ -3,6 +3,9 @@ using PennyDreadless.Models.Finance.Interfaces;
 
 namespace PennyDreadless.Models.Finance
 {
+    /// <summary>
+    /// An implementation of the PennyDreadless.Models.Finance.Interfaces.ITransaction interface.
+    /// </summary>
     public class Transaction : ITransaction
     {
         public Transaction( IParticipant Payee, IParticipant Payer, IAmount Amount, DateTime Date )

@@ -12,22 +12,64 @@
         <vms:AccountsPageViewModel/>
     </Page.DataContext>
 
-    <Grid>
+    <Page.Resources>
+        <SolidColorBrush x:Key="InputBorderBrush" Color="Green"/>
+        <SolidColorBrush x:Key="ListContainerBorderBrush" Color="Gray"/>
+    </Page.Resources>
+
+    <Grid Margin="2">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="30"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
-            <ListBox>
-                
+        <Grid x:Name="AccountsGrid" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBox BorderBrush="{StaticResource InputBorderBrush}" BorderThickness="0,0,0,1" FontSize="14" Grid.Row="0" 
+                             HorizontalContentAlignment="Center" Margin="1" SnapsToDevicePixels="True" VerticalContentAlignment="Bottom" Width="250" 
+                             x:Name="AccountSearchTextBox"/>
+
+            <ListBox BorderBrush="{StaticResource ListContainerBorderBrush}" BorderThickness="1" Grid.Row="1" Margin="1" 
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled" SnapsToDevicePixels="True" x:Name="AccountListListBox">
+                <ListBoxItem Height="60" BorderBrush="Gray" BorderThickness="2" Margin ="1,2"/>
             </ListBox>
-            
         </Grid>
 
-        <Grid Grid.Column="1" Width="200" Visibility="{Binding AccountDataIsVisible}">
-            
+        <Grid x:Name="AccountTransactionsGrid" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel HorizontalAlignment="Left" Margin="4,1,0,2" Orientation="Horizontal" VerticalAlignment="Bottom">
+                <TextBlock Text="Balance : " FontSize="16" x:Name="BalanceTextTextBlock"/>
+                <TextBlock Text="£"          FontSize="16" x:Name="BalanceCurrencyTextBlock"/>
+                <TextBlock Text="00.00"      FontSize="16" x:Name="BalanceAmountTextBlock"/>
+            </StackPanel>
+
+            <Grid Grid.Row="0">
+                <TextBox BorderBrush="{StaticResource InputBorderBrush}" BorderThickness="0,0,0,1" FontSize="14" Grid.Row="0" 
+                                 HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="1" 
+                                  SnapsToDevicePixels="True" VerticalContentAlignment="Bottom" 
+                                 VerticalAlignment="Bottom"  Width="250" x:Name="TransactionsSearchTextBox"/>
+
+                <Button BorderThickness="1" BorderBrush="LightGray" Content="Export" Height="28" HorizontalAlignment="Right" Margin="0,0,1,0" VerticalAlignment="Center" Width="114"/>
+            </Grid>
+
+            <ListBox BorderBrush="{StaticResource ListContainerBorderBrush}" BorderThickness="1" Grid.Row="1" Margin="1" 
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled" SnapsToDevicePixels="True" x:Name="TransactionListListBox">
+                <ListBoxItem Height="35" BorderBrush="Gray" BorderThickness="2" Margin ="1,2"/>
+            </ListBox>
         </Grid>
-        
+
+        <Grid x:Name="AccountDataVisualizationGrid" Grid.Column="2">
+
+        </Grid>
     </Grid>
 </Page>

@@ -64,7 +64,6 @@
     <Compile Include="Models\Core\Extensions\StringExtensions.cs" />
     <Compile Include="Models\Core\Interfaces\INavigationHandler.cs" />
     <Compile Include="Models\Core\Interfaces\IUserAuthenticator.cs" />
-    <Compile Include="Models\Core\InvalidKeyException.cs" />
     <Compile Include="Models\Core\NavigationHandler.cs" />
     <Page Include="Views\AccountsPageView.xaml">
       <SubType>Designer</SubType>

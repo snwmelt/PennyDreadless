@@ -1,6 +1,10 @@
 ﻿namespace PennyDreadless.Models.Core.Enums
 {
-    internal enum DataRequestResult
+    /// <summary>
+    /// For use with a PennyDreadless.Models.Core.DataRequestEventArgs instance 
+    /// to denote the result of a data request.
+    /// </summary>
+    public enum DataRequestResult
     {
         Failed   = 0,
         Success  = 2,

@@ -1,10 +1,14 @@
-﻿using PennyDreadless.Models.Core.Interfaces;
+﻿using PennyDreadless.Models.Core.Extensions;
+using PennyDreadless.Models.Core.Interfaces;
 using System;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace PennyDreadless.Models.Core
 {
+    /// <summary>
+    /// An implementation of the PennyDreadless.Models.Core.Interfaces.IUserAuthenticator interface.
+    /// </summary>
     internal class AuthenticationManager : IUserAuthenticator
     {
         public void Authenticate( String Username, String Password )
@@ -20,7 +24,7 @@ namespace PennyDreadless.Models.Core
 
             if ( !Core.UserDataSerializer.UserKeyIsValid( _UserID, _UserKey ) )
             {
-                throw new InvalidKeyException( "User Password Incorrect." );
+                throw new AccessViolationException( "User Password Incorrect." );
             }
 
             UserID        = _UserID;
@@ -41,7 +45,13 @@ namespace PennyDreadless.Models.Core
             UserKey  = null;
             Username = null;
         }
-        
+
+        /// <summary>
+        /// Generates a 256 bit System.Byte[] representation of the user password combined with a salt.
+        /// </summary>
+        /// <param name="Password">System.String Containing User Password.</param>
+        /// <param name="Salt">System.String Containing Salt To Combine With User Password.</param>
+        /// <returns>Resulting Syste.Byte[] Key From Rfc2898DeriveBytes( string, byte[], int )</returns>
         private Byte[] _Generate256BitKey( String Password, String Salt )
         {
             return ( new Rfc2898DeriveBytes( Password, Encoding.ASCII.GetBytes( Salt ), 300 ) ).GetBytes( 32 );

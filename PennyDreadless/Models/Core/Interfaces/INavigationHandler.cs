@@ -5,18 +5,18 @@ using System.Windows.Navigation;
 namespace PennyDreadless.Models.Core.Interfaces
 {
     /// <summary>
-    /// 
+    /// Provides mechanisms for naviagting the application user interface via a System.Windows.Navigation.NavigationService instance.
     /// </summary>
     internal interface INavigationHandler
     {
         /// <summary>
-        /// Naviage User Interface Backwards.
+        /// Naviage user interface Backwards.
         /// </summary>
         /// <returns></returns>
         Boolean NavigateBackward( );
 
         /// <summary>
-        /// Navigate User Interface Forwards.
+        /// Navigate user interface Forwards.
         /// </summary>
         /// <returns></returns>
         Boolean NavigateForward( );
@@ -27,12 +27,12 @@ namespace PennyDreadless.Models.Core.Interfaces
         NavigationService NavigationService { get; }
 
         /// <summary>
-        /// Indicate Availablity of System.Windows.Navigation.NavigationService Instance.
+        /// Indicate availablity of the System.Windows.Navigation.NavigationService Instance.
         /// </summary>
         Boolean NavigationServiceAvailable { get; }
 
         /// <summary>
-        /// Navigate User Interface to a Page Assosiated with UIContent Enum. 
+        /// Navigate user interface to a Page assosiated with the UIContent Enum. 
         /// </summary>
         /// <param name="Object"></param>
         /// <returns></returns>

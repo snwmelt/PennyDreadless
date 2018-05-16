@@ -11,7 +11,7 @@ namespace PennyDreadless.Models.Core
     {
         #region Private Variables
 
-        private static readonly Core _Instance = new Core( );
+        private static readonly Core     _Instance               = new Core( );
         private IUserDataSerializer      _IUserDataSerializer;
         private IUserAuthenticator       _IUserAuthenticator;
         private Lazy<INavigationHandler> _LazyINavigationHandler;

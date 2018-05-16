@@ -5,6 +5,9 @@ using System.Windows.Navigation;
 
 namespace PennyDreadless.Models.Core
 {
+    /// <summary>
+    /// An implementation of the PennyDreadless.Models.Core.Interfaces.INavigationHandler interface.
+    /// </summary>
     internal class NavigationHandler : INavigationHandler
     {
         public NavigationHandler ( NavigationService NavigationService )

@@ -3,6 +3,9 @@ using System;
 
 namespace PennyDreadless.Models.Financial
 {
+    /// <summary>
+    /// An implementation of the PennyDreadless.Models.Finance.Interfaces.IAmount interface.
+    /// </summary>
     internal class Amount : IAmount
     {
         public Amount( Decimal Value, ICurrency Currency )

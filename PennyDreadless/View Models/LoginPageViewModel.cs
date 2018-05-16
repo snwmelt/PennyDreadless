@@ -1,5 +1,6 @@
 ﻿using PennyDreadless.Models.Core;
 using PennyDreadless.Models.Core.Enums;
+using PennyDreadless.Models.Core.Extensions;
 using System;
 using System.ComponentModel;
 using Walkways.MVVM.View_Model;

@@ -10,11 +10,14 @@ using System.IO;
 
 namespace PennyDreadless.Models.Core
 {
-    internal sealed class DataContext : IUserDataSerializer, IDisposable
+    /// <summary>
+    /// An implementation of the PennyDreadless.Models.Core.Interfaces.IUserDataSerializer interface.
+    /// </summary>
+    internal sealed class DataContext : IUserDataSerializer
     {
         #region Private Variables
 
-        private IEncryptedSerializer    _IEncryptedSerlizer = new RijndaelManagedEncryptedSerializer( );
+        private IEncryptedSerializer  _IEncryptedSerlizer = new RijndaelManagedEncryptedSerializer( );
         private String                _ConfrimationString = "PennyDreadlessLovesYou";
         private IEnumerable<IAccount> _UserAccountsData;
         private String                _UserDataLocation   = Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ), "PennyDreadless", "DataContext" );
@@ -41,7 +44,7 @@ namespace PennyDreadless.Models.Core
             _IEncryptedSerlizer.Dispose( );
         }
 
-        public void LoadUserData( String ID, Byte[] Key )
+        public void LoadUserAccountsData( String ID, Byte[] Key )
         {
             throw new NotImplementedException( );
         }
